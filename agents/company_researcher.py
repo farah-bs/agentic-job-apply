@@ -10,7 +10,7 @@ from langchain_community.tools.tavily_search import TavilySearchResults
 
 SYSTEM_PROMPT = """You are a business intelligence researcher. 
 Given search results about a company, extract key facts useful for tailoring a job application.
-Always respond with a single valid JSON object — no markdown, no extra text.
+Always respond with a single valid JSON object. No markdown, no extra text.
 """
 
 SYNTHESIS_PROMPT = """Based on the following search results about {company_name}, 
