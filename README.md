@@ -58,13 +58,3 @@ Job URL + LaTeX Résumé
         ```sh
         uv pip install -r requirements.txt
         ```
-
----
-
-### TODO
-- [ ] Add error handling and logging for each agent step
-- [ ] Implement retry logic for transient failures (e.g. network issues)
-- [ ] Add unit tests for each agent's functionality
-- [ ] Extend the pipeline to support multiple languages. Job positing, réésumé and cover letter in the same language. Currently only English is supported.
-- [ ] Create a web interface for users to input job URL and upload résumé, and download results, instead of using command line arguments. Latex files should be compiled to PDF for easier consumption.
-
