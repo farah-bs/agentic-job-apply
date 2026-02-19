@@ -1,6 +1,6 @@
 # Agentic Job Application Pipeline
 
-A LangGraph-powered multi-agent system that analyzes a job posting, researches the company, and rewrites your LaTeX résumé to fit — automatically.
+A LangGraph-powered multi-agent system that analyzes a job posting, researches the company, and rewrites your LaTeX résumé to fit automatically.
 
 ## Architecture
 
@@ -40,3 +40,11 @@ Job URL + LaTeX Résumé
          ▼
     output/ directory
 ```
+
+### TODO
+- [ ] Add error handling and logging for each agent step
+- [ ] Implement retry logic for transient failures (e.g. network issues)
+- [ ] Add unit tests for each agent's functionality
+- [ ] Extend the pipeline to support multiple languages. Job positing, réésumé and cover letter in the same language. Currently only English is supported.
+- [ ] Create a web interface for users to input job URL and upload résumé, and download results, instead of using command line arguments. Latex files should be compiled to PDF for easier consumption.
+
