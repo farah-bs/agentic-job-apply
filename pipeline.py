@@ -13,8 +13,10 @@ from agents.latex_refactorer import LaTeXRefactorerAgent
 from agents.cover_letter_writer import CoverLetterWriterAgent
 from utils.llm_factory import get_llm
 from utils.printer import print_step, print_result
+from utils.pdf_compiler import compile_with_retry
 
 
+# ─── Pipeline State ────────────────────────────────────────────────────────────
 
 class PipelineState(TypedDict):
     # Inputs
@@ -138,12 +140,24 @@ def save_outputs(state: PipelineState) -> PipelineState:
         resume_path = output_dir / f"{base_name}_resume.tex"
         resume_path.write_text(state["tailored_resume_latex"])
         saved.append(str(resume_path))
+        # Compile to PDF via LaTeX.Online
+        try:
+            pdf_path = compile_with_retry(str(resume_path))
+            saved.append(pdf_path)
+        except Exception as e:
+            print(f"PDF compilation failed (your .tex is still saved): {e}")
 
     # Cover letter
     if state.get("cover_letter_latex"):
         cl_path = output_dir / f"{base_name}_cover_letter.tex"
         cl_path.write_text(state["cover_letter_latex"])
         saved.append(str(cl_path))
+        # Compile to PDF via LaTeX.Online
+        try:
+            pdf_path = compile_with_retry(str(cl_path))
+            saved.append(pdf_path)
+        except Exception as e:
+            print(f"Cover letter PDF compilation failed: {e}")
 
     # Job profile JSON (for reference)
     if state.get("job_profile"):
@@ -163,7 +177,7 @@ def save_outputs(state: PipelineState) -> PipelineState:
         ep_path.write_text(json.dumps(state["edit_plan"], indent=2))
         saved.append(str(ep_path))
 
-    print("\n✅ Pipeline complete! Files saved:")
+    print("\nPipeline complete! Files saved:")
     for f in saved:
         print(f"   📄 {f}")
 
