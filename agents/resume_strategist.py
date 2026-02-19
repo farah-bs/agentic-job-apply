@@ -1,13 +1,3 @@
-"""
-agents/resume_strategist.py — Agent 3: Analyze the gap between résumé and job, produce edit plan
-
-Produces a structured edit plan that tells Agent 4 exactly what to change:
-- Which bullet points to rewrite (and how)
-- Which sections to emphasize or de-emphasize
-- Which keywords to inject
-- What overall tone to adopt
-"""
-
 import json
 import re
 
@@ -19,7 +9,7 @@ from langchain_core.output_parsers import StrOutputParser
 SYSTEM_PROMPT = """You are an expert résumé strategist and career coach. 
 You analyze job requirements and résumés to produce a precise, actionable edit plan.
 Focus on: keyword alignment, impact quantification, relevance ordering, and tone.
-Always respond with a single valid JSON object — no markdown, no extra text.
+Always respond with a single valid JSON object. No markdown, no extra text.
 """
 
 STRATEGY_PROMPT = """You are tailoring a candidate's résumé for a specific job.
