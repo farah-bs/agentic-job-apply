@@ -63,7 +63,7 @@ class CompanyResearcherAgent:
 
     def _search(self, query: str) -> list[dict]:
         if self.verbose:
-            print(f"   🔍 Searching: {query}")
+            print(f"Searching: {query}")
         results = self.search_tool.invoke(query)
         return results if isinstance(results, list) else []
 
@@ -87,6 +87,7 @@ class CompanyResearcherAgent:
 
         # Run multiple targeted searches
         queries = [
+            f"{company_name}",
             f"{company_name} company overview mission products",
             f"{company_name} engineering culture tech stack",
             f"{company_name} recent news 2025 2026",
@@ -109,7 +110,7 @@ class CompanyResearcherAgent:
                 unique_results.append(r)
 
         if self.verbose:
-            print(f"   Found {len(unique_results)} unique sources")
+            print(f"Found {len(unique_results)} unique sources")
 
         search_text = self._format_results(unique_results[:10])
 
