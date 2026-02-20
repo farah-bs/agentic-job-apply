@@ -115,7 +115,15 @@ class JobAnalyzerAgent:
         if self.verbose:
             print(f"   Fetching: {job_url}")
 
-        job_content = self._fetch_job_page(job_url)
+        # Check if job_url is actually a file path
+        from pathlib import Path
+        job_path = Path(job_url)
+        if job_path.exists() and job_path.is_file():
+            if self.verbose:
+                print(f"   Reading job description from file: {job_url}")
+            job_content = job_path.read_text()[:8000]  # Truncate to 8000 chars
+        else:
+            job_content = self._fetch_job_page(job_url)
 
         if self.verbose:
             print(f"Fetched {len(job_content)} chars of job content")

@@ -10,7 +10,11 @@ load_dotenv()
 
 def main():
     parser = argparse.ArgumentParser(description="Agentic Job Application Pipeline")
-    parser.add_argument("--url", required=True, help="Job posting URL")
+    parser.add_argument(
+        "--url", 
+        required=True, 
+        help="Job posting URL or path to .txt/.md file with job description (for sites that block scraping)"
+    )
     parser.add_argument("--resume", required=True, help="Path to your LaTeX résumé (.tex)")
     parser.add_argument("--output-dir", default="output", help="Directory for output files")
     parser.add_argument("--cover-letter", action="store_true", help="Also generate a cover letter")
