@@ -51,10 +51,11 @@ Job URL + LaTeX Résumé
 2. **Create and activate a uv virtual environment:**
         ```
         uv venv .venv
+   
         source .venv/bin/activate
         ```
 
-3. **Install dependencies from requirements.txt:**
+4. **Install dependencies from requirements.txt:**
         ```
         uv pip install -r requirements.txt
         ```
