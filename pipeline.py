@@ -49,11 +49,16 @@ def run_job_analyzer(state: PipelineState) -> PipelineState:
         print_result("Job analyzed", f"{job_profile.get('job_title', 'Unknown')} @ {job_profile.get('company_name', 'Unknown')}")
         return {**state, "job_profile": job_profile, "completed_steps": state["completed_steps"] + ["job_analyzer"]}
     except Exception as e:
-        print(f"Job Analyzer failed: {e}")
-        return {**state, "errors": state["errors"] + [f"job_analyzer: {e}"]}
+        print(f"\nCRITICAL ERROR: Job Analyzer failed: {e}")
+        print("\nPipeline cannot continue without job analysis. Exiting...")
+        raise SystemExit(1)
 
 
 def run_company_researcher(state: PipelineState) -> PipelineState:
+    if state.get('job_profile') is None:
+        print("\nCRITICAL ERROR: Cannot run Company Researcher without job_profile")
+        raise SystemExit(1)
+    
     print_step("2/5", "Company Researcher", f"Researching {state['job_profile'].get('company_name', 'company')}...")
     try:
         llm = get_llm()
@@ -65,11 +70,16 @@ def run_company_researcher(state: PipelineState) -> PipelineState:
         print_result("Company researched", company_brief.get("summary", "")[:80] + "...")
         return {**state, "company_brief": company_brief, "completed_steps": state["completed_steps"] + ["company_researcher"]}
     except Exception as e:
-        print(f"Company Researcher failed: {e}")
-        return {**state, "errors": state["errors"] + [f"company_researcher: {e}"], "company_brief": {}}
+        print(f"\nCRITICAL ERROR: Company Researcher failed: {e}")
+        print("\nPipeline cannot continue without company research. Exiting...")
+        raise SystemExit(1)
 
 
 def run_resume_strategist(state: PipelineState) -> PipelineState:
+    if state.get('job_profile') is None:
+        print("\n❌ CRITICAL ERROR: Cannot run Résumé Strategist without job_profile")
+        raise SystemExit(1)
+    
     print_step("3/5", "Résumé Strategist", "Planning tailoring strategy...")
     try:
         llm = get_llm()
@@ -83,11 +93,16 @@ def run_resume_strategist(state: PipelineState) -> PipelineState:
         print_result("Strategy ready", f"{n_changes} planned changes")
         return {**state, "edit_plan": edit_plan, "completed_steps": state["completed_steps"] + ["resume_strategist"]}
     except Exception as e:
-        print(f"Résumé Strategist failed: {e}")
-        return {**state, "errors": state["errors"] + [f"resume_strategist: {e}"]}
+        print(f"\nCRITICAL ERROR: Résumé Strategist failed: {e}")
+        print("\nPipeline cannot continue without edit plan. Exiting...")
+        raise SystemExit(1)
 
 
 def run_latex_refactorer(state: PipelineState) -> PipelineState:
+    if state.get('edit_plan') is None or state.get('job_profile') is None:
+        print("\nCRITICAL ERROR: Cannot run LaTeX Refactorer without edit_plan or job_profile")
+        raise SystemExit(1)
+    
     print_step("4/5", "LaTeX Refactorer", "Rewriting résumé LaTeX...")
     try:
         llm = get_llm()
@@ -100,13 +115,19 @@ def run_latex_refactorer(state: PipelineState) -> PipelineState:
         print_result("Résumé rewritten", f"{len(tailored_latex)} characters of LaTeX")
         return {**state, "tailored_resume_latex": tailored_latex, "completed_steps": state["completed_steps"] + ["latex_refactorer"]}
     except Exception as e:
-        print(f"LaTeX Refactorer failed: {e}")
-        return {**state, "errors": state["errors"] + [f"latex_refactorer: {e}"]}
+        print(f"\nCRITICAL ERROR: LaTeX Refactorer failed: {e}")
+        print("\nPipeline cannot continue without tailored résumé. Exiting...")
+        raise SystemExit(1)
 
 
 def run_cover_letter_writer(state: PipelineState) -> PipelineState:
     if not state.get("generate_cover_letter"):
         return state
+    
+    if state.get('job_profile') is None:
+        print("\nCRITICAL ERROR: Cannot write cover letter without job_profile")
+        raise SystemExit(1)
+    
     print_step("5/5", "Cover Letter Writer", "Drafting tailored cover letter...")
     try:
         llm = get_llm()
@@ -119,11 +140,16 @@ def run_cover_letter_writer(state: PipelineState) -> PipelineState:
         print_result("Cover letter ready", f"{len(cover_letter)} characters")
         return {**state, "cover_letter_latex": cover_letter, "completed_steps": state["completed_steps"] + ["cover_letter_writer"]}
     except Exception as e:
-        print(f"Cover Letter Writer failed: {e}")
-        return {**state, "errors": state["errors"] + [f"cover_letter_writer: {e}"]}
+        print(f"\nCRITICAL ERROR: Cover Letter Writer failed: {e}")
+        print("\nCover letter generation failed. Exiting...")
+        raise SystemExit(1)
 
 
 def save_outputs(state: PipelineState) -> PipelineState:
+    if not state.get("tailored_resume_latex"):
+        print("\nCRITICAL ERROR: No tailored résumé to save")
+        raise SystemExit(1)
+    
     print_step("✓", "Saving Outputs", "Writing files to disk...")
     output_dir = Path(state["output_dir"])
     output_dir.mkdir(parents=True, exist_ok=True)
@@ -179,12 +205,7 @@ def save_outputs(state: PipelineState) -> PipelineState:
 
     print("\nPipeline complete! Files saved:")
     for f in saved:
-        print(f"   📄 {f}")
-
-    if state.get("errors"):
-        print("\n⚠️  Errors encountered:")
-        for err in state["errors"]:
-            print(f"   - {err}")
+        print(f"{f}")
 
     return state
 
