@@ -2,6 +2,10 @@ import json
 import re
 import requests
 from bs4 import BeautifulSoup
+import urllib3
+
+# Disable SSL warnings
+urllib3.disable_warnings(urllib3.exceptions.InsecureRequestWarning)
 
 from langchain_core.language_models import BaseChatModel
 from langchain_core.prompts import ChatPromptTemplate
@@ -71,7 +75,7 @@ class JobAnalyzerAgent:
             )
         }
         try:
-            response = requests.get(url, headers=headers, timeout=15)
+            response = requests.get(url, headers=headers, timeout=15, verify=False)
             response.raise_for_status()
         except requests.RequestException as e:
             raise RuntimeError(f"Failed to fetch job page: {e}")
