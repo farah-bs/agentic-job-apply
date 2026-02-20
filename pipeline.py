@@ -77,7 +77,7 @@ def run_company_researcher(state: PipelineState) -> PipelineState:
 
 def run_resume_strategist(state: PipelineState) -> PipelineState:
     if state.get('job_profile') is None:
-        print("\n❌ CRITICAL ERROR: Cannot run Résumé Strategist without job_profile")
+        print("\nCRITICAL ERROR: Cannot run Résumé Strategist without job_profile")
         raise SystemExit(1)
     
     print_step("3/5", "Résumé Strategist", "Planning tailoring strategy...")
