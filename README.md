@@ -44,17 +44,17 @@ Job URL + LaTeX Résumé
 ## Setup (with uv virtual environment)
 
 1. **Install [uv](https://github.com/astral-sh/uv) if you don't have it:**
-        ```sh
+        ```
         pip install uv
         ```
 
 2. **Create and activate a uv virtual environment:**
-        ```sh
+        ```
         uv venv .venv
         source .venv/bin/activate
         ```
 
 3. **Install dependencies from requirements.txt:**
-        ```sh
+        ```
         uv pip install -r requirements.txt
         ```
