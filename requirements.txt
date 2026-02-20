@@ -5,7 +5,7 @@ langchain-community>=0.3.0
 langgraph>=0.2.0
 
 # LLM Provider
-langchain-google-genai>=2.0.0 
+langchain-mistralai>=0.1.0
 
 # Web / Search
 tavily-python>=0.3.0            
