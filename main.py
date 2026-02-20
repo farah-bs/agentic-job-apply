@@ -1,7 +1,11 @@
 import argparse
 import asyncio
 from pathlib import Path
+from dotenv import load_dotenv
 from pipeline import run_pipeline
+
+# Load environment variables from .env file
+load_dotenv()
 
 
 def main():
