@@ -26,7 +26,7 @@ def main():
         print(f"Resume file not found: {resume_path}")
         return
 
-    print("\ntarting Job Application Pipeline\n")
+    print("\nStarting Job Application Pipeline\n")
     print(f"Job URL  : {args.url}")
     print(f"Resume   : {args.resume}")
     print(f"Output   : {args.output_dir}")
