@@ -5,19 +5,19 @@ from functools import lru_cache
 @lru_cache(maxsize=1)
 def get_llm(temperature: float = 0.2):
     """
-    Returns a LangChain-compatible Gemini LLM.
+    Returns a LangChain-compatible Mistral LLM.
 
     Environment variables:
-        GOOGLE_API_KEY : Required for Google Generative AI
-        LLM_MODEL      : Override default model (default: gemini-1.5-pro)
+        MISTRAL_API_KEY : Required for Mistral AI
+        LLM_MODEL       : Override default model (default: mistral-large-2512)
     """
-    from langchain_google_genai import ChatGoogleGenerativeAI
+    from langchain_mistralai import ChatMistralAI
     
-    model = os.getenv("LLM_MODEL", "gemini-1.5-pro")
-    print(f"Using Google Gemini ({model})")
+    model = os.getenv("LLM_MODEL", "mistral-large-2512")
+    print(f"Using Mistral AI ({model})")
     
-    return ChatGoogleGenerativeAI(
+    return ChatMistralAI(
         model=model,
         temperature=temperature,
-        convert_system_message_to_human=True
+        mistral_api_key=os.getenv("MISTRAL_API_KEY")
     )
