@@ -1,0 +1,76 @@
+Ingénieure.e de recherche en Science des données et Intelligence Artificielle H/F
+Attributs du poste
+Intitulé du poste
+Ingénieure.e de recherche en Science des données et Intelligence Artificielle H/F
+
+Statut
+Cadres
+
+Contrat
+CDD Terme Précis
+
+Durée du CDD (exprimée en mois)
+12
+
+Temps de travail
+Temps plein
+
+Localisation du poste
+Lieu d'exercice
+Rueil ou Solaize
+Description du poste
+Contexte
+Le département de mathématiques appliquées d'IFP Energies Nouvelles recherche un(e) ingénieur(e) de recherche pour renforcer ses équipes, doté(e) d'une expertise en Scientific Machine Learning. Cette expertise est essentielle au développement de solutions innovantes liées aux énergies nouvelles, à la mobilité durable et à la transition énergétique.
+
+Le poste est rattaché à la Direction Sciences et Technologies du Numérique.
+
+Mission(s) principale(s) et activités
+Vous participerez à des projets de recherche de haut niveau en intelligence artificielle, en lien avec différentes applications stratégiques d’IFPEN, notamment :
+
+Eolien
+Stockage géologique du CO2
+Batteries
+Biocarburants
+Combustion d’hydrogène
+Vos travaux porteront sur le développement de méthodes d’apprentissage profond pour l’analyse de données expérimentales (observations et mesures) ainsi que pour la modélisation et la simulation numérique de systèmes physiques complexes.Parmi les thématiques ciblées :
+
+Modèles d’apprentissage pour la résolution d’équations aux dérivées partielles (opérateurs neuronaux, modèles hybrides)
+Intégration de connaissances physiques dans les modèles d’apprentissage (PINN, développement de nouvelles architectures, GNN)
+Développement de modèles d’IA générative pour la résolution de problèmes inverses (synthèse de nouveaux matériaux, etc.)
+Analyse et traitement d’images et du signal issus de mesures de laboratoire (chromatographie, RMN, etc.)
+En collaboration avec des experts IA, des spécialistes applicatifs d’IFPEN et des partenaires académiques et industriels nationaux et internationaux, vous aurez un rôle central dans la conception et le déploiement de ces méthodes. Vous participerez à la rédaction d’articles scientifiques destinés à des revues internationales et à la présentation des résultats lors de conférences. Vous serez également impliqué dans l’encadrement de doctorants ainsi que dans la gestion de projets collaboratifs.
+
+Déplacements à prévoir
+Déplacements ponctuels entre sites (Rueil-Solaize)
+
+Critères candidat
+Compétences techniques et aptitudes
+Compétences techniques:
+
+Excellente maîtrise en optimisation, quantification d'incertitude, statistiques et apprentissage profond.
+Connaissance approfondie des développements récents en deep learning : GNN, Transformers, modèles de diffusion latente, opérateurs neuronaux, etc.
+Excellente maîtrise d’au moins un framework d’IA parmi PyTorch, JAX, TensorFlow.
+Intérêt marqué pour les sciences naturelles et la simulation numérique (physique, chimie, mécanique des fluides, énergie…).
+Aptitudes
+
+Capacité à travailler en équipe dans un environnement pluridisciplinaire, en interaction avec des spécialistes d’IA, des numériciens et des experts applicatifs.
+Autonomie, curiosité scientifique et goût pour l’innovation et le transfert vers l’industrie.
+Excellente maîtrise de l’anglais, à l’écrit comme à l’oral.
+Langues
+Français (Courant)
+Anglais (Courant)
+Diplôme(s), niveau d'études
+Doctorat en mathématiques appliquées, statistiques, science des données, informatique ou discipline équivalente, avec une forte composante en apprentissage automatique / apprentissage profond.
+
+Expérience(s) professionnelle(s) souhaitée(s)
+Débutant accepté
+
+Information publication
+Accessible aux personnes porteuses d'un handicap :
+Oui
+
+ 
+ 
+Informations générales
+structure organisationnelle (logo)
+Référence
